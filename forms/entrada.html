@@ -1,1 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Registro de Entrada</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
 
+<header>
+    <h1>📥 Registro de Entrada de Estoque</h1>
+</header>
+
+<nav>
+    <a href="../index.html">🏠 Início</a>
+    <a href="produto.html">📦 Produto</a>
+    <a href="fornecedor.html">🏭 Fornecedor</a>
+    <a href="entrada.html">📥 Entrada</a>
+    <a href="saida.html">📤 Saída</a>
+    <a href="cliente.html">👤 Cliente</a>
+</nav>
+
+<main>
+    <form id="formEntrada">
+        <label>Produto:</label>
+        <input type="text" id="produto" required>
+
+        <label>Quantidade:</label>
+        <input type="number" id="quantidade" min="1" required>
+
+        <label>Data da Entrada:</label>
+        <input type="date" id="data" required>
+
+        <label>Fornecedor:</label>
+        <input type="text" id="fornecedor" required>
+
+        <label>Preço Unitário (R$):</label>
+        <input type="number" id="precoUnitario" step="0.01" min="0.01" required>
+
+        <label>Nota Fiscal:</label>
+        <input type="text" id="notaFiscal" required>
+
+        <button type="button" onclick="enviarEntrada()">Registrar Entrada</button>
+    </form>
+
+    <p id="mensagem"></p>
+</main>
+
+<footer>
+    <p>Sistema de Controle de Estoque &copy; 2026</p>
+</footer>
+
+<script src="../js/entrada.js"></script>
+</body>
+</html>
