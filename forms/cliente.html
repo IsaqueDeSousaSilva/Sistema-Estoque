@@ -1,1 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro de Cliente</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
 
+<header>
+    <h1>Cadastro de Cliente</h1>
+</header>
+
+<nav>
+    <a href="../index.html">Início</a>
+    <a href="produto.html">Produto</a>
+    <a href="fornecedor.html">Fornecedor</a>
+    <a href="entrada.html">Entrada</a>
+    <a href="saida.html">Saída</a>
+    <a href="cliente.html">Cliente</a>
+</nav>
+
+<main>
+    <form id="formCliente">
+        <label>Nome Completo:</label>
+        <input type="text" id="nome" required>
+
+        <label>CPF:</label>
+        <input type="text" id="cpf" placeholder="000.000.000-00" required>
+
+        <label>Telefone:</label>
+        <input type="text" id="telefone" required>
+
+        <label>E-mail:</label>
+        <input type="email" id="email" required>
+
+        <label>Endereço:</label>
+        <input type="text" id="endereco" required>
+
+        <label>Data de Nascimento:</label>
+        <input type="date" id="dataNascimento" required>
+
+        <button type="button" onclick="enviarCliente()">Cadastrar Cliente</button>
+    </form>
+
+    <p id="mensagem"></p>
+</main>
+
+<footer>
+    <p>Sistema de Controle de Estoque &copy; 2026</p>
+</footer>
+
+<script src="../js/cliente.js"></script>
+</body>
+</html>
