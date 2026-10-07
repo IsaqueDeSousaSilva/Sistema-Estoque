@@ -1,1 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro de Fornecedor</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
 
+<header>
+    <h1> Cadastro de Fornecedor</h1>
+</header>
+
+<nav>
+    <a href="../index.html"> Início</a>
+    <a href="produto.html"> Produto</a>
+    <a href="fornecedor.html"> Fornecedor</a>
+    <a href="entrada.html"> Entrada</a>
+    <a href="saida.html"> Saída</a>
+    <a href="cliente.html"> Cliente</a>
+</nav>
+
+<main>
+    <form id="formFornecedor">
+        <label>Nome da Empresa:</label>
+        <input type="text" id="nome" required>
+
+        <label>CNPJ:</label>
+        <input type="text" id="cnpj" placeholder="00.000.000/0000-00" required>
+
+        <label>Telefone:</label>
+        <input type="text" id="telefone" placeholder="(34) 99999-9999" required>
+
+        <label>E-mail:</label>
+        <input type="email" id="email" required>
+
+        <label>Endereço:</label>
+        <input type="text" id="endereco" required>
+
+        <label>Produto Fornecido:</label>
+        <input type="text" id="produtoFornecido" required>
+
+        <button type="button" onclick="enviarFornecedor()">Cadastrar Fornecedor</button>
+    </form>
+
+    <p id="mensagem"></p>
+</main>
+
+<footer>
+    <p>Sistema de Controle de Estoque &copy; 2026</p>
+</footer>
+
+<script src="../js/fornecedor.js"></script>
+</body>
+</html>
