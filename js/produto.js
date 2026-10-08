@@ -8,26 +8,24 @@ function enviarProduto() {
 
     const msg = document.getElementById('mensagem');
 
-    // Validação no cliente
     if (!nome || !descricao || !categoria || !fornecedor) {
-        msg.innerText = ' Preencha todos os campos de texto!';
+        msg.innerText = 'Preencha todos os campos de texto!';
         msg.style.color = 'red';
         return;
     }
 
     if (isNaN(preco) || preco <= 0) {
-        msg.innerText = ' Preço deve ser maior que zero!';
+        msg.innerText = 'Preço deve ser maior que zero!';
         msg.style.color = 'red';
         return;
     }
 
     if (isNaN(quantidade) || quantidade < 0) {
-        msg.innerText = ' Quantidade inválida!';
+        msg.innerText = 'Quantidade inválida!';
         msg.style.color = 'red';
         return;
     }
 
-    // Envio via Fetch (AJAX)
     fetch('../php/valida_produto.php', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
