@@ -4,33 +4,41 @@ header('Content-Type: application/json');
 $dados = json_decode(file_get_contents('php://input'), true);
 
 $nome = trim($dados['nome'] ?? '');
-$cnpj = trim($dados['cnpj'] ?? '');
-$telefone = trim($dados['telefone'] ?? '');
-$email = trim($dados['email'] ?? '');
-$endereco = trim($dados['endereco'] ?? '');
-$produtoFornecido = trim($dados['produtoFornecido'] ?? '');
+$descricao = trim($dados['descricao'] ?? '');
+$preco = floatval($dados['preco'] ?? 0);
+$quantidade = intval($dados['quantidade'] ?? 0);
+$categoria = trim($dados['categoria'] ?? '');
+$fornecedor = trim($dados['fornecedor'] ?? '');
 
-if (empty($nome) || empty($cnpj) || empty($telefone) || empty($email) || empty($endereco) || empty($produtoFornecido)) {
+if (empty($nome) || empty($descricao) || empty($categoria) || empty($fornecedor)) {
     echo json_encode(['sucesso' => false, 'mensagem' => 'Erro: Campos obrigatórios não preenchidos.']);
     exit;
 }
 
-$cnpjLimpo = preg_replace('/\D/', '', $cnpj);
-if (strlen($cnpjLimpo) !== 14) {
-    echo json_encode(['sucesso' => false, 'mensagem' => 'Erro: CNPJ inválido.']);
+if ($preco <= 0) {
+    echo json_encode(['sucesso' => false, 'mensagem' => 'Erro: Preço inválido.']);
     exit;
 }
 
-if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-    echo json_encode(['sucesso' => false, 'mensagem' => 'Erro: E-mail inválido.']);
+if ($quantidade < 0) {
+    echo json_encode(['sucesso' => false, 'mensagem' => 'Erro: Quantidade inválida.']);
     exit;
 }
 
-// Lógica adicional: gerar código interno do fornecedor
-$codigoFornecedor = 'FORN-' . strtoupper(substr(md5($cnpjLimpo), 0, 6));
+$valorTotal = $preco * $quantidade;
+
+if ($preco < 100) {
+    $faixa = 'Econômico';
+} elseif ($preco < 1000) {
+    $faixa = 'Intermediário';
+} else {
+    $faixa = 'Premium';
+}
 
 echo json_encode([
     'sucesso' => true,
-    'mensagem' => " Fornecedor '$nome' cadastrado! Código interno: $codigoFornecedor | Produto: $produtoFornecido"
+    'mensagem' => "Produto '$nome' cadastrado! Valor total em estoque: R$ " . 
+                  number_format($valorTotal, 2, ',', '.') . 
+                  " | Faixa: $faixa"
 ]);
 ?>
