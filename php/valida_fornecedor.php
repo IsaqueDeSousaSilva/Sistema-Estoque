@@ -26,11 +26,10 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     exit;
 }
 
-// Lógica adicional: gerar código interno do fornecedor
 $codigoFornecedor = 'FORN-' . strtoupper(substr(md5($cnpjLimpo), 0, 6));
 
 echo json_encode([
     'sucesso' => true,
-    'mensagem' => " Fornecedor '$nome' cadastrado! Código interno: $codigoFornecedor | Produto: $produtoFornecido"
+    'mensagem' => "Fornecedor '$nome' cadastrado! Código interno: $codigoFornecedor | Produto: $produtoFornecido"
 ]);
 ?>
