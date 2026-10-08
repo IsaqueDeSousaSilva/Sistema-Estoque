@@ -8,29 +8,25 @@ function enviarFornecedor() {
 
     const msg = document.getElementById('mensagem');
 
-    // Validação
     if (!nome || !cnpj || !telefone || !email || !endereco || !produtoFornecido) {
-        msg.innerText = ' Preencha todos os campos!';
+        msg.innerText = 'Preencha todos os campos!';
         msg.style.color = 'red';
         return;
     }
 
-    // Validação de CNPJ (14 dígitos)
     const cnpjLimpo = cnpj.replace(/\D/g, '');
     if (cnpjLimpo.length !== 14) {
-        msg.innerText = ' CNPJ deve conter 14 dígitos!';
+        msg.innerText = 'CNPJ deve conter 14 dígitos!';
         msg.style.color = 'red';
         return;
     }
 
-    // Validação de e-mail
     if (!email.includes('@') || !email.includes('.')) {
-        msg.innerText = ' E-mail inválido!';
+        msg.innerText = 'E-mail inválido!';
         msg.style.color = 'red';
         return;
     }
 
-    // Envio via Fetch
     fetch('../php/valida_fornecedor.php', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
