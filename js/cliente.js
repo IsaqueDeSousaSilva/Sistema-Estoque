@@ -15,6 +15,7 @@ function enviarCliente() {
     }
 
     const cpfLimpo = cpf.replace(/\D/g, '');
+
     if (cpfLimpo.length !== 11) {
         msg.innerText = 'CPF deve conter 11 dígitos!';
         msg.style.color = 'red';
@@ -28,34 +29,32 @@ function enviarCliente() {
     }
 
     const hoje = new Date().toISOString().split('T')[0];
-    if (dataNascimento > hoje) {
-        msg.innerText = 'Data de nascimento não pode ser futura!';
-        msg.style.color = 'red';
-        return;
-    }
 
-    const nasc = new Date(dataNascimento);
-    const hojeDate = new Date();
-    let idade = hojeDate.getFullYear() - nasc.getFullYear();
-    const mes = hojeDate.getMonth() - nasc.getMonth();
-    if (mes < 0 || (mes === 0 && hojeDate.getDate() < nasc.getDate())) {
-        idade--;
-    }
-    if (idade < 18) {
-        msg.innerText = 'Cliente deve ter pelo menos 18 anos!';
+    if (dataNascimento > hoje) {
+        msg.innerText = 'A data de nascimento não pode ser futura!';
         msg.style.color = 'red';
         return;
     }
 
     fetch('../php/valida_cliente.php', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ nome, cpf, telefone, email, endereco, dataNascimento })
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            nome,
+            cpf,
+            telefone,
+            email,
+            endereco,
+            dataNascimento
+        })
     })
     .then(response => response.json())
     .then(data => {
         msg.innerText = data.mensagem;
         msg.style.color = data.sucesso ? 'green' : 'red';
+
         if (data.sucesso) {
             document.getElementById('formCliente').reset();
         }
