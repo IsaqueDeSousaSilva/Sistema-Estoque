@@ -1,1 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro de Produto</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
 
+<header>
+    <h1>Cadastro de Produto</h1>
+</header>
+
+<nav>
+    <a href="../index.html">Início</a>
+    <a href="produto.html">Produto</a>
+    <a href="fornecedor.html">Fornecedor</a>
+    <a href="entrada.html">Entrada</a>
+    <a href="saida.html">Saída</a>
+    <a href="cliente.html">Cliente</a>
+</nav>
+
+<main>
+    <form id="formProduto">
+        <label>Nome do Produto:</label>
+        <input type="text" id="nome" placeholder="Ex: Notebook Dell" required>
+
+        <label>Descrição:</label>
+        <input type="text" id="descricao" placeholder="Ex: Notebook i5 8GB" required>
+
+        <label>Preço Unitário (R$):</label>
+        <input type="number" id="preco" step="0.01" min="0.01" required>
+
+        <label>Quantidade em Estoque:</label>
+        <input type="number" id="quantidade" min="0" required>
+
+        <label>Categoria:</label>
+        <input type="text" id="categoria" placeholder="Ex: Informática" required>
+
+        <label>Fornecedor:</label>
+        <input type="text" id="fornecedor" placeholder="Ex: Dell Brasil" required>
+
+        <button type="button" onclick="enviarProduto()">Cadastrar Produto</button>
+    </form>
+
+    <p id="mensagem"></p>
+</main>
+
+<footer>
+    <p>Sistema de Controle de Estoque &copy; 2026</p>
+</footer>
+
+<script src="../js/produto.js"></script>
+</body>
+</html>
